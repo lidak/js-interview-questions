@@ -94,7 +94,9 @@
 ## Operations with object
 
 ### Object creation
-1) **Q:** List all the possible ways to create an object in JS?
+1) **Q:** What does ```Object.create``` method do?
+  **A:** It creates a new object, using an existing object to provide the newly created object's ```__proto__```
+2) **Q:** List all the possible ways to create an object in JS?
     **A:**
     ```
       const myObj = new Object();
@@ -103,16 +105,24 @@
       const somePrototype = {doSomething: () => {console.log('Doing something')}}
       const oneMoreObj = Object.create(somePrototype);
     ```
- 2) **Q:** What is the difference between two approaches to create numeber variable bellow?
+ 3) **Q:** What is the difference between two approaches to create number variable bellow?
     ```
       const num = 2;
       const num1 = new Object(2)
     ```
     **A:** Second assignment would create ```Number``` instance object wrapper for number value
- 3)
-### Defining properties
 ### Properties descriptors
+1) **Q:** What is advantage in using ```Object.defineProperty``` method in comparison with regular set of object propery (like ```obj.a = 1;```)
+  **A:** ```Object.defineProperty``` provides an ability to set property descriptors besides it's value.
+
+2) **Q:** List all available property descriptors
+**A:** They're: ```writable```, ```configurable```, ```enumerable```, ```value```, ```get```, ```set```
+
+3) **Q:** What are <i>data descriptors</i> and <i>accessor descriptors</i><br/>
+  **A:** A <i>data descriptor</i> is a property that has a value. An <i>accessor descriptor</i> is a property described by a getter-setter pair of functions. A descriptor must be one of these two flavors; it cannot be both.
 ### Object merging
+1) **Q:** How to merge two objects?
+**A:** You can use spread operator or ```Object.assign``` method. However they both do just shallow merge. Write you own method that would iterate through own properties of both objects recursively if you need deep merge.
 ### Properties iteration
 1) **Q:** how to loop through own object's properties?
     **A:**
@@ -129,8 +139,23 @@
         // some code goes here
       })
     ```
+
+    ```
+      Object.getOwnPropertyNames(object).forEach((propName) => {
+        // some code goes here
+      })
+    ```
+
+2) **Q:** How to make a property not iterable
+**A:** Set ```enumerable``` property descriptor to ```false```. i.e. use ```Object.defineProperty```
 ### Copying
-1) **Q:** How to create a deep copy of an object in JS?
+1) **Q:** How many objects will be produced by code bellow?
+```
+  const a = {};
+  const b = a;
+```
+**A:** It will produce single object since objects in JS are passed by refference.
+2) **Q:** How to create a deep copy of an object in JS?
     **A:** You can use
     ```
       JSON.parse(JSON.stringify(a))

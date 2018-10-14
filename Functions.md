@@ -154,8 +154,3 @@
  **A:** ```arguments``` is an array-like object, but it doesn't have any array properties except ```length```
  3) **Q:** How to access all the arguments from within arrow function?
  **A:** Use ```rest``` operator;
-
-
-
-
-# Classes
